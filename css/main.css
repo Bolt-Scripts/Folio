@@ -1,0 +1,20 @@
+html {
+  font-family: "Verdana";
+  font-size: 26px;
+}
+
+body {
+  background: #48f0e7;
+}
+
+.vertical-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
