@@ -4,7 +4,15 @@ html {
 }
 
 body {
-  background: #48f0e7;
+  background: #67b3e5;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#67b3e5), to(#7cd8ea));
+  background: linear-gradient(to bottom, #67b3e5 0%, #7cd8ea 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#67b3e5', endColorstr='#7cd8ea',GradientType=0 );
+  /* IE6-9 */
 }
 
 .vertical-center {
