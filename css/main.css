@@ -50,7 +50,7 @@
 }
 
 footer {
-  height: 100px;
+  height: 110px;
 }
 
 footer > div {
@@ -64,10 +64,10 @@ footer > div {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 100%;
+  width: -webkit-fill-available;
   left: 0;
   bottom: 0px;
-  padding-top: 25px;
+  padding: 25px 20px 10px;
   z-index: -999;
   color: #c6c6c6;
 }
@@ -109,6 +109,28 @@ body {
   body {
     zoom: 1;
   }
+}
+
+.err404 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: -webkit-fill-available;
+  width: -webkit-fill-available;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.err404 img {
+  width: 200px;
 }
 
 .vertical-center {

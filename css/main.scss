@@ -45,8 +45,10 @@ $darkGrey: rgb(22, 22, 22);
 
 footer{
     $footerHeight: 75px;
-    $verticalPadding: 25px;
-    height: $footerHeight + $verticalPadding;
+    $topPadding: 25px;
+    $btmPadding: 10px;
+    $lrPadding: 20px;
+    height: $footerHeight + $topPadding + $btmPadding;
     
     >div{
         background: $darkGrey;
@@ -55,10 +57,10 @@ footer{
         display: grid;
         grid-template-columns: 2fr 2fr 1fr;
         justify-content: center;
-        width: 100%;
+        width: -webkit-fill-available;
         left: 0;
         bottom: 0px;
-        padding-top: $verticalPadding;
+        padding: $topPadding $lrPadding $btmPadding;
         z-index: -999;
         color: #c6c6c6;
 
@@ -98,6 +100,19 @@ body{
 
     position: relative;
     margin: 0;
+}
+
+.err404{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+    flex-direction: column;
+
+    img{
+        width: 200px;
+    }
 }
 
 .vertical-center{
