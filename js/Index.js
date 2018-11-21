@@ -23,7 +23,7 @@ function Index() {
 
     PageLoad = function () {
         let postsRef = database.ref("blogposts");
-        postsRef.on("value", (data) => {
+        postsRef.on("value", data => {
             postsJSON = data.val();
             let keys = Object.keys(postsJSON).reverse();
 

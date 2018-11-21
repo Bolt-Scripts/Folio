@@ -1,0 +1,60 @@
+$darkGrey: rgb(22, 22, 22);
+
+
+.chat-zone{
+
+    display: grid;
+    grid-template-rows: 90% 1fr;    
+    height: 100%;
+    
+
+    .messages-zone{
+        display: flex;        
+        flex-direction: column;
+        width: -webkit-fill-available;
+        overflow: auto;
+
+
+        .msg{
+            border-collapse: separate;
+            margin-bottom: 5px;
+            padding-bottom: 5px;
+            //border-bottom: 1px solid $darkGrey;
+            box-shadow: 0px 2px 4px -3px black;
+
+            .date{
+                border-collapse: separate;
+                padding-right: 5px;
+                border-right: 1px solid black;
+            }
+            .name{
+                
+            }
+            .text{
+                
+            }
+        }
+    }
+
+    .input-zone{
+        display: grid;
+        grid-template-columns: 1fr 1.4fr 1.5fr 10fr 0.5fr;
+        grid-gap: 8px;
+        padding: 0px 10px;
+        width: -webkit-fill-available;
+        align-items: center;
+        box-shadow: 0px 2px 10px 0px $darkGrey;
+
+
+        input, button{
+            height: 30px;
+        }
+
+        .name{
+            
+        }
+        .text{
+            width: -webkit-fill-available;         
+        }
+    }
+}

@@ -1,0 +1,37 @@
+<head>
+    <link rel="icon" href="/imgs/portrait_64.png">
+    <title>bolt.codes chat</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/apps/chat.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <script src="/js/Utility/InitFB.js"></script>
+    <script src="/js/Utility/FbHitCounter.js"></script>
+</head>
+
+<body>
+    <div class="chat-zone">
+        <div class="messages-zone bg" data-bind="foreach:chatMessages">
+            <div class="msg">
+                <span class="date" data-bind="text:date"></span>
+                <span class="name" data-bind="text:name"></span>
+                <span class="text" data-bind="text:text"></span>
+            </div>
+        </div>
+
+        <div class="input-zone">
+            <span> Name:</span>
+            <input class="name" type="text" data-bind="textInput:chatName">
+
+            <span> Message:</span>
+            <input class="text" type="text" data-bind="textInput:chatText">
+            <button data-bind="click:SendMsg">Send</button>
+        </div>
+    </div>
+
+
+    <script src="/js/apps/chat.js"></script>
+</body>
