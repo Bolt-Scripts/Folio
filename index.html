@@ -37,8 +37,8 @@
     <!-- scripto stuff -->
     <script type="text/html" id="blogpost-template">
         <h2 class="post-title" data-bind="text:title"></h2>
-        <img data-bind="attr:{src:imgurl}">
-        <p data-bind="text:msg"></p>
+        <div class="img" data-bind="html:imgurl"></div>
+        <p data-bind="html:msg"></p>
 
         <div class="likes-container" data-bind="css:{active:likeClicked}">
             <span data-bind="text:likes"></span>
