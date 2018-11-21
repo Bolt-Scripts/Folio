@@ -67,7 +67,7 @@ function ChatApp() {
         msgsRef.limitToLast(maxMsgs).on("child_added", data => {
             let dataJSON = data.val();
             AddNewMsg(dataJSON);
-        });
+        }, err => console.error(err));
 
         //msgsRef.limitToLast(maxMsgs).once("value", data => {
         //    let dataJSON = data.val();
