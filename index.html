@@ -1,41 +1,47 @@
- <head>
-    <link rel="icon" href="/imgs/portrait_64.png">
-    <title>bolt.codes</title>
+<!-- 
+---
+--- 
+-->
 
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/blogzone.css">
+<html>
+    <head>
+        <link rel="icon" href="/imgs/portrait_64.png">
+        <title>bolt.codes</title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-    <script src="/js/Utility/InitFB.js"></script>
-    <script src="/js/Utility/FbHitCounter.js"></script>
-</head>
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/blogzone.css?{{site.time | date: '%s%N'}}">
 
-<body>
-    <div class="bg">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+        <script src="/js/Utility/InitFB.js"></script>
+        <script src="/js/Utility/FbHitCounter.js"></script>
+    </head>
 
-        <div include-html="html/utility/TopNavBar.html"></div>
+    <body>
+        <div class="bg">
+
+            <div include-html="html/utility/TopNavBar.html"></div>
 
 
-        <center>
-            <div class="blog-zone">
-                <h2 class="blog-title">Blog I Guess</h2>
+            <center>
+                <div class="blog-zone">
+                    <h2 class="blog-title">Blog I Guess</h2>
 
-                <div data-bind="foreach:posts">
-                    <div class="blog-post" data-bind="template:{name:'blogpost-template'}"></div>
+                    <div data-bind="foreach:posts">
+                        <div class="blog-post" data-bind="template:{name:'blogpost-template'}"></div>
+                    </div>
                 </div>
-            </div>
-        </center>
+            </center>
 
-    </div>
+        </div>
 
-    <div include-html="html/utility/footer.html"></div>
-
+        <div include-html="html/utility/footer.html"></div>
 
 
-    <!-- scripto stuff -->
-    <script type="text/html" id="blogpost-template">
+
+        <!-- scripto stuff -->
+        <script type="text/html" id="blogpost-template">
         <h2 class="post-title" data-bind="text:title"></h2>
         <div class="img" data-bind="html:imgurl"></div>
         <p data-bind="html:msg"></p>
@@ -46,6 +52,7 @@
         </div>
     </script>
 
-    <script src="js/Index.js"></script>
-    <script src="js/utility/Main.js"></script>
-</body>
+        <script src="js/Index.js"></script>
+        <script src="js/utility/Main.js"></script>
+    </body>
+</html>

@@ -17,7 +17,6 @@ $darkGrey: rgb(22, 22, 22);
         margin-left: 15px;
     }
 
-
     .blog-post{
         margin: 0 10px 30px;
         padding: 10px 20px;
@@ -29,6 +28,7 @@ $darkGrey: rgb(22, 22, 22);
         .img, img{
             max-width: 100%;
             max-height: 400px;
+            display: inline;
         }
 
         >p{
