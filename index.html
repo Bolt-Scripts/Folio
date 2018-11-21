@@ -1,47 +1,44 @@
-<!-- 
 ---
---- 
--->
+---
 
-<html>
-    <head>
-        <link rel="icon" href="/imgs/portrait_64.png">
-        <title>bolt.codes</title>
+<head>
+    <link rel="icon" href="/imgs/portrait_64.png">
+    <title>bolt.codes</title>
 
-        <link rel="stylesheet" href="/css/main.css">
-        <link rel="stylesheet" href="/css/blogzone.css?{{site.time | date: '%s%N'}}">
+    <link rel="stylesheet" href="/css/main.css?{{site.time | date: '%s%N'}}">
+    <link rel="stylesheet" href="/css/blogzone.css?{{site.time | date: '%s%N'}}">
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-        <script src="/js/Utility/InitFB.js"></script>
-        <script src="/js/Utility/FbHitCounter.js"></script>
-    </head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <script src="/js/Utility/InitFB.js"></script>
+    <script src="/js/Utility/FbHitCounter.js"></script>
+</head>
 
-    <body>
-        <div class="bg">
+<body>
+    <div class="bg">
 
-            <div include-html="html/utility/TopNavBar.html"></div>
+        <div include-html="html/utility/TopNavBar.html"></div>
 
 
-            <center>
-                <div class="blog-zone">
-                    <h2 class="blog-title">Blog I Guess</h2>
+        <center>
+            <div class="blog-zone">
+                <h2 class="blog-title">Blog I Guess</h2>
 
-                    <div data-bind="foreach:posts">
-                        <div class="blog-post" data-bind="template:{name:'blogpost-template'}"></div>
-                    </div>
+                <div data-bind="foreach:posts">
+                    <div class="blog-post" data-bind="template:{name:'blogpost-template'}"></div>
                 </div>
-            </center>
+            </div>
+        </center>
 
-        </div>
+    </div>
 
-        <div include-html="html/utility/footer.html"></div>
+    <div include-html="html/utility/footer.html"></div>
 
 
 
-        <!-- scripto stuff -->
-        <script type="text/html" id="blogpost-template">
+    <!-- scripto stuff -->
+    <script type="text/html" id="blogpost-template">
         <h2 class="post-title" data-bind="text:title"></h2>
         <div class="img" data-bind="html:imgurl"></div>
         <p data-bind="html:msg"></p>
@@ -52,7 +49,6 @@
         </div>
     </script>
 
-        <script src="js/Index.js"></script>
-        <script src="js/utility/Main.js"></script>
-    </body>
-</html>
+    <script src="js/Index.js?{{site.time | date: '%s%N'}}"></script>
+    <script src="js/utility/Main.js?{{site.time | date: '%s%N'}}"></script>
+</body>
