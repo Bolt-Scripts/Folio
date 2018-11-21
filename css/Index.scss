@@ -1,0 +1,76 @@
+$aspect: "3/2";
+$darkGrey: rgb(22, 22, 22);
+
+.blog-zone{
+    width: 50vw;
+    min-height: 600px;
+    text-align: left;
+
+    background: white;
+    border-radius: 10px;
+
+    padding: 10px;
+
+    .blog-title{
+        margin-block-start: 0.15em;
+        margin-block-end: 1em;
+        margin-left: 15px;
+    }
+
+
+    .blog-post{
+        margin: 0 10px 30px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        box-shadow: 0px 2px 10px 0px $darkGrey;
+
+        background: white;
+
+        img{
+            max-width: 100%;
+            max-height: 300px;
+        }
+
+        >p{
+            margin-block-start: 0.5em;
+            margin-block-end: 0.5em;
+        }
+
+        .post-title{            
+            margin-block-start: 0.5em;
+            margin-block-end: 0.5em;
+        }
+
+        .likes-container{
+            $animDuration: 0.1s;
+            display: flex;
+            align-items: center;
+
+            &.active >button {
+                transform: scale(1.75) rotateY(185deg);
+                &:after{ content: "❤"; }
+            }
+            &.active >span {
+                transform: scale(1.25) rotateX(185deg);
+            }
+
+            >button{
+                &:after{ content: "♡"; }
+                border: none;
+                background: none;
+                cursor: pointer;
+                font-size: 30px;
+                color: rgb(238, 56, 56);
+                &:focus {outline:0;}
+                -webkit-tap-highlight-color: transparent;
+
+                transition: transform $animDuration ease;                
+            }
+
+            >span{
+                transition: transform $animDuration ease;
+            }
+        }
+    }
+
+}

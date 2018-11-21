@@ -1,19 +1,51 @@
-<head>
-    <link rel="stylesheet" href="css/main.css">
+ <head>
+    <link rel="icon" href="/imgs/portrait_64.png">
+    <title>bolt.codes</title>
 
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/Index.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-    <script src="js/Utility/InitFB.js"></script>
-    <script src="js/Utility/FbHitCounter.js"></script>
+    <script src="/js/Utility/InitFB.js"></script>
+    <script src="/js/Utility/FbHitCounter.js"></script>
 </head>
 
 <body>
-    <div class="vertical-center max">
-        <p style="font-size: 60px">Nothing Here Yet.</p>
+    <div class="bg">
 
-        
+        <div include-html="html/utility/TopNavBar.html"></div>
+
+
+        <center>
+            <div class="blog-zone">
+                <h2 class="blog-title">Blog I Guess</h2>
+
+                <div data-bind="foreach:posts">
+                    <div class="blog-post" data-bind="template:{name:'blogpost-template'}"></div>
+                </div>
+            </div>
+        </center>
+
     </div>
-    
-    <footer>
-            <span id="viewCounter"></span>
-    </footer>
+
+    <div include-html="html/utility/footer.html"></div>
+
+
+
+    <!-- scripto stuff -->
+    <script type="text/html" id="blogpost-template">
+        <h2 class="post-title" data-bind="text:title"></h2>
+        <img data-bind="attr:{src:imgurl}">
+        <p data-bind="text:msg"></p>
+
+        <div class="likes-container" data-bind="css:{active:likeClicked}">
+            <span data-bind="text:likes"></span>
+            <button data-bind="click:LikePost"></button>
+        </div>
+    </script>
+
+    <script src="js/Index.js"></script>
+    <script src="js/utility/Main.js"></script>
 </body>
