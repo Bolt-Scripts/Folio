@@ -2,14 +2,17 @@ $(document).ready(() => ko.applyBindings(new ChatApp()));
 
 
 function ChatApp() {
+    const maxMsgs = 60;
 
     chatName = ko.observable("Stranger");
     chatText = ko.observable("");
     chatMessages = ko.observableArray();
 
-    msgsRef = database.ref("chatMessages");
+    let msgsRef = database.ref("chatMessages");
+    let msgDiv = $(".messages-zone")[0]
+    let msgInputBox = $("#inputmsgbox")[0]
 
-    user = null;
+    let user = null;
 
     SendMsg = function () {
         if (!user) {
@@ -27,6 +30,30 @@ function ChatApp() {
         msgsRef.push(msg);
 
         chatText("");
+        msgInputBox.focus();
+    }
+
+    MsgKeyCheck = function(d, e){
+        if(e.keyCode == 13 || e.key == "Enter"){
+            SendMsg();
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    let AddNewMsg = function (msg, bulk = false) {
+        msg.date = ((d = new Date(msg.date)) => `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()} - ${d.toLocaleTimeString()}`)();
+        msg.name += ": ";
+        chatMessages.push(msg);
+
+        if (!bulk) {
+            if(chatMessages().length > maxMsgs){
+                chatMessages.remove(chatMessages()[0]);
+            }
+
+            msgDiv.scrollTop = msgDiv.scrollHeight;
+        }
     }
 
     let PageLoad = async function () {
@@ -37,23 +64,21 @@ function ChatApp() {
         }
         //console.log(user);
 
-        msgsRef.limitToLast(60).on("value", (data) => {
+        msgsRef.limitToLast(maxMsgs).on("child_added", data => {
             let dataJSON = data.val();
-            let keys = Object.keys(dataJSON);
+            AddNewMsg(dataJSON);
+        });
 
-            let tmpMessages = [];
-
-            for (let key of keys) {
-                let tmpMsg = dataJSON[key];
-                tmpMsg.date = ((d = new Date(tmpMsg.date)) => `${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()} - ${d.toLocaleTimeString()}`)();
-                tmpMsg.name += ": ";
-                tmpMessages.push(tmpMsg);
-            }
-
-            chatMessages(tmpMessages);
-            let msgDiv = $(".messages-zone")[0]
-            msgDiv.scrollTop = msgDiv.scrollHeight;
-        }, err => console.error(err));
+        //msgsRef.limitToLast(maxMsgs).once("value", data => {
+        //    let dataJSON = data.val();
+        //    let keys = Object.keys(dataJSON);
+//
+        //    for (let key of keys) {
+        //        AddNewMsg(dataJSON[key], true);
+        //    }
+//
+        //    msgDiv.scrollTop = msgDiv.scrollHeight;
+        //}, err => console.error(err));
     }
 
 
