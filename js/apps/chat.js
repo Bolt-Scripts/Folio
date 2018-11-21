@@ -45,7 +45,7 @@ function ChatApp() {
 
             for (let key of keys) {
                 let tmpMsg = dataJSON[key];
-                tmpMsg.date = ((d = new Date(tmpMsg.date)) => `${d.getMonth()}/${d.getDate()}/${d.getFullYear()} - ${d.toLocaleTimeString()}`)();
+                tmpMsg.date = ((d = new Date(tmpMsg.date)) => `${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()} - ${d.toLocaleTimeString()}`)();
                 tmpMsg.name += ": ";
                 tmpMessages.push(tmpMsg);
             }
