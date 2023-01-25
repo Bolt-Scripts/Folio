@@ -45,6 +45,8 @@ footer > div {
   grid-template-columns: 2fr 2fr 1fr;
   justify-content: center;
   width: -webkit-fill-available;
+  width: -moz-available;
+  width: fill;
   left: 0;
   bottom: 0px;
   padding: 25px 20px 10px;
@@ -69,18 +71,13 @@ html {
   background: #f4f4f4;
   background: linear-gradient(to bottom, #f4f4f4 0%, #efefef 57%, #c6c6c6 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f4f4f4", endColorstr="#c6c6c6",GradientType=0 );
+  min-height: 100vh;
   padding: 5px 5px 20px 5px;
 }
 
 body {
-  zoom: 1.75;
   position: relative;
   margin: 0;
-}
-@media only screen and (min-aspect-ratio: 3/2) {
-  body {
-    zoom: 1;
-  }
 }
 
 .err404 {
