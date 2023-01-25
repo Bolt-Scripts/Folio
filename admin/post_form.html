@@ -1,0 +1,37 @@
+<div id="msform">
+    <div>
+        <span>title: </span>
+        <input type="text" data-bind="textinput:title">
+    </div>
+
+    <div>
+        <span>img url: </span>
+        <input type="text" data-bind="textinput:imgurl">
+    </div>
+
+    <div>
+        <span>description: </span>
+        <input type="text" data-bind="textinput:description">
+    </div>
+
+    <div>
+        <span>pass key: </span>
+        <input type="password" data-bind="textinput:key">
+    </div>
+
+    <div style="display: flex;">
+        <span>message: </span>
+        <textarea name="" id="" cols="30" rows="10" data-bind="textinput:msg" style="width: 882px; height: 104px;"></textarea>
+    </div>
+
+    <div>
+        <span>Tags: </span>
+        <input type="text" data-bind="textinput:tags">
+    </div>
+
+    <div>
+        <button data-bind="click:post">
+            submit
+        </button>
+    </div>
+</div>

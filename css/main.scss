@@ -4,7 +4,7 @@ $darkGrey: rgb(22, 22, 22);
 .top-nav-area{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    height: 220px;
+    height: auto;
     align-items: center;
 
     margin: 0px 2.5vw 15px 2.5vw;
@@ -13,9 +13,12 @@ $darkGrey: rgb(22, 22, 22);
     .right{ text-align: right; }
 
     .portrait{
+
+        height: 100px;
+
         transform: rotatex(0deg);
 
-        center{ height: 65%; }
+        center{ height: inherit; }
         img{
             transition: all 0.8s ease;
             height: 100%;
