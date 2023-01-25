@@ -2,7 +2,8 @@ $aspect: "3/2";
 $darkGrey: rgb(22, 22, 22);
 
 .blog-zone{
-    width: 75vw;
+    min-width: 90vmin;
+    max-width: 75vw;
     min-height: 300px;
     text-align: left;
 

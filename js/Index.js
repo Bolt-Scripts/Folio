@@ -37,14 +37,18 @@ function Index() {
             postsJSON = data.val();
             let keys = Object.keys(postsJSON).reverse();
 
-            //return early if no new posts
-            if (keys.length <= posts().length)
-                return;
-
-            posts.removeAll();
-
             for (let key of keys) {
-                let post = postsJSON[key];
+
+                let post = posts().find(x => x.id == key);
+                let pj = postsJSON[key];
+
+                if(post){
+                    //update post
+                    post.likes(pj.likes);
+                    continue;
+                }
+
+                post = pj;
 
                 //handle tags
                 if(post.tags){

@@ -1,6 +1,7 @@
 @charset "UTF-8";
 .blog-zone {
-  width: 75vw;
+  min-width: 90vmin;
+  max-width: 75vw;
   min-height: 300px;
   text-align: left;
   background: white;
