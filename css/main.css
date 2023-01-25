@@ -36,6 +36,7 @@
 
 footer {
   height: 110px;
+  font-size: 1.25vh;
 }
 footer > div {
   background: rgb(22, 22, 22);
@@ -63,7 +64,7 @@ footer .right {
 
 html {
   font-family: "Verdana";
-  font-size: 16px;
+  font-size: 1.5vh;
   color: rgb(22, 22, 22);
 }
 
@@ -72,7 +73,6 @@ html {
   background: linear-gradient(to bottom, #f4f4f4 0%, #efefef 57%, #c6c6c6 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f4f4f4", endColorstr="#c6c6c6",GradientType=0 );
   min-height: 100vh;
-  padding: 5px 5px 20px 5px;
 }
 
 body {

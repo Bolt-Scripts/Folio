@@ -33,7 +33,7 @@ $darkGrey: rgb(22, 22, 22);
         select {
             padding: 5px;
             margin: 10px 10px 0px 0px;
-            font-size: 16px;
+            font-size: 1.5vh;
             border: none;
             border-radius: 4px;
             background-color: #e3e3e3;
@@ -45,21 +45,22 @@ $darkGrey: rgb(22, 22, 22);
         padding: 10px 20px;
         border-radius: 10px;
         box-shadow: 0px 2px 10px 0px $darkGrey;
-        display: inline-grid;
+        display: grid;
         min-width: 0px;
-        height: 300px;
+        min-height: 20vw;
 
         background: white;
 
         .img, img{
             max-width: 100%;
-            max-height: 200px;
+            max-height: 20vmin;
             display: inline;
         }
 
         >p{
             margin-block-start: 0.5em;
             margin-block-end: 0.5em;
+            font-size: 1vmax;
         }
 
         .post-title{            
@@ -82,7 +83,7 @@ $darkGrey: rgb(22, 22, 22);
             }
 
             >span{
-                font-size: 0.75vw;
+                font-size: 1vmax;
             };
 
             >button{

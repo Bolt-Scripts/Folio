@@ -52,6 +52,7 @@ footer{
     $btmPadding: 10px;
     $lrPadding: 20px;
     height: $footerHeight + $topPadding + $btmPadding;
+    font-size: 1.25vh;
     
     >div{
         background: $darkGrey;
@@ -79,7 +80,7 @@ footer{
 //util
 html{
     font-family: "Verdana";
-    font-size: 16px;
+    font-size: 1.5vh;
     color: $darkGrey;
 }
 
@@ -92,7 +93,7 @@ html{
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f4f4', endColorstr='#c6c6c6',GradientType=0 );
 
     min-height: 100vh;
-    padding: 5px 5px 20px 5px;
+    // padding: 5px 5px 20px 5px;
 }
 
 body{
