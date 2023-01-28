@@ -25,7 +25,7 @@
 
                 <div class="blog-zone">
 
-                    <h2 class="blog-title">Blog I Guess</h2>
+                    <h2 id="Title" class="blog-title">Blog I Guess</h2>
 
                     <div class="blog-options">
                         Display:
@@ -41,9 +41,23 @@
                         </select>
                     </div>
 
-                    <div data-bind="class:displayType, foreach:posts">
-                        <div class="blog-post" data-bind="visible:$data.filter(), template:{name:'blogpost-template'}"></div>
+
+                    <div id="MainPost" data-bind="if:mainPost()">
+                        <div class="blog-post main-post"
+                            data-bind="template:{name:'blogpost-template', data:mainPost}">
+                        </div>
                     </div>
+
+
+                    <div data-bind="class:displayType, foreach:posts">
+                        <div class="blog-post"
+                            data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'}
+                            ">
+                        </div>
+                    </div>
+
                 </div>
             </center>
 
@@ -52,19 +66,28 @@
         <div include-html="html/utility/footer.html"></div>
 
 
-
         <!-- scripto stuff -->
         <script type="text/html" id="blogpost-template">
-        <h4 class="post-title" data-bind="text:title"></h4>
-        <div class="img" data-bind="html:imgurl"></div>
-        <p data-bind="html:description"></p>
 
-        <div class="likes-container" data-bind="css:{active:likeClicked}">
-            <span data-bind="text:likes"></span>
-            <button data-bind="click:LikePost"></button>
-            <span data-bind="text:tags.join(',')">Tags</span>
-        </div>
-    </script>
+            <div class="info" data-bind="event:{click:Click}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}"><b>↩</b>&nbsp;</button>
+                    <h4 class="post-title" data-bind="text:title"></h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"></div>
+                <p class="description" data-bind="html:description"></p>
+                <p class="post-content" data-bind="html:msg"></p>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes"></span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(',')">Tags</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}">Close Post</button>
+
+        </script>
 
         <script src="js/Index.js?{{site.time | date: '%s%N'}}"></script>
         <script src="js/utility/Main.js?{{site.time | date: '%s%N'}}"></script>

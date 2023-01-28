@@ -1,5 +1,7 @@
 $aspect: "3/2";
 $darkGrey: rgb(22, 22, 22);
+$lightGrey: rgb(180, 180, 180);
+$mainCol: #34865c;
 
 .blog-zone{
     min-width: 90vmin;
@@ -41,10 +43,36 @@ $darkGrey: rgb(22, 22, 22);
         }
     }
 
+    .main-post {
+
+        box-shadow: 0px 2px 10px 0px $mainCol !important;
+
+        .description{
+            display: none;
+        }
+
+        .post-content{
+            display: block !important;
+        }
+
+        .info{
+            cursor: auto !important;
+        }
+
+        .back-btn{
+            display: block !important;
+        }
+
+        img{
+            max-height: 45vmin !important;
+        }
+    }
+
     .blog-post{
+
         margin: 0 10px 30px;
         padding: 10px 20px;
-        border-radius: 10px;
+        border-radius: 6px;
         box-shadow: 0px 2px 10px 0px $darkGrey;
         display: grid;
         min-width: 0px;
@@ -52,21 +80,47 @@ $darkGrey: rgb(22, 22, 22);
 
         background: white;
 
-        .img, img{
-            max-width: 100%;
-            max-height: 20vmin;
-            display: inline;
+        .back-btn{
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: inherit;
+            font-family: inherit;
+            display: none;
+            text-align: left;
+            padding: 0;           
+            color: $mainCol; 
         }
 
-        >p{
-            margin-block-start: 0.5em;
-            margin-block-end: 0.5em;
-            font-size: 1vmax;
-        }
+        .info{
 
-        .post-title{            
-            margin-block-start: 0.5em;
-            margin-block-end: 0.5em;
+            cursor: pointer;
+            display: contents;
+
+            
+            
+            img{
+                max-width: 100%;
+                max-height: 20vmin;
+                display: inline;
+                margin: 1.5vmin;
+            }
+            
+            >p{
+                margin-block-start: 0.5em;
+                margin-block-end: 0.5em;
+                font-size: 1vmax;
+            }
+            
+            .post-title{            
+                margin-block-start: 0.5em;
+                margin-block-end: 0.5em;
+                display: flex;
+            }
+
+            .post-content{
+                display: none;
+            }
         }
 
         .likes-container{

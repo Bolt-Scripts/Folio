@@ -9,6 +9,9 @@ function Index() {
     displayType = ko.observable("feed-grid");
     allTags = ko.observableArray(["Select", "All"]);
     selectedTags = ko.observableArray([allIdx]);
+    mainPost = ko.observable();
+
+    pageLoaded = false;
 
     postsJSON = "";
 
@@ -42,7 +45,7 @@ function Index() {
                 let post = posts().find(x => x.id == key);
                 let pj = postsJSON[key];
 
-                if(post){
+                if (post) {
                     //update post
                     post.likes(pj.likes);
                     continue;
@@ -51,11 +54,11 @@ function Index() {
                 post = pj;
 
                 //handle tags
-                if(post.tags){
+                if (post.tags) {
                     let combinedTags = allTags().concat(post.tags);
                     let uniqueTags = [...new Set(combinedTags)];
                     allTags(uniqueTags);
-                }else{
+                } else {
                     post.tags = [];
                 }
 
@@ -64,14 +67,21 @@ function Index() {
                 post.likes = ko.observable(post.likes);
                 post.description = ko.observable(post.description);
 
-                post.filter = function(){
+                post.Click = function () {
 
-                    if(selectedTags.indexOf(allIdx) >= 0) return true;
-                    if(post.tags.length == 0) return false;
+                    if (post == mainPost()) return;
+
+                    SetMainPost(post);
+                }
+
+                post.Filter = function () {
+
+                    if (selectedTags.indexOf(allIdx) >= 0) return true;
+                    if (post.tags.length == 0) return false;
 
                     for (let i = 0; i < selectedTags().length; i++) {
                         const tag = allTags()[selectedTags()[i]];
-                        if(post.tags.indexOf(tag) >= 0) return true;
+                        if (post.tags.indexOf(tag) >= 0) return true;
                     }
 
                     return false;
@@ -79,17 +89,23 @@ function Index() {
 
                 posts.push(post);
             }
+
+            if (!pageLoaded) {
+                LoadPostFromSearchParams();
+            }
+
+            pageLoaded = true;
         });
     }
 
     SetTagEnable = function (e) {
         let idx = e.index;
-        
+
         let selected = selectedTags.indexOf(idx) >= 0;
         e.innerText = (selected ? "✓" : "") + allTags()[idx];
     }
 
-    function SetTagsEnable(select){
+    function SetTagsEnable(select) {
         for (let i = 0; i < select.length; i++) {
             const opt = select[i];
             SetTagEnable(opt);
@@ -100,27 +116,72 @@ function Index() {
 
         let idx = e.target.selectedIndex;
 
-        if(idx == allIdx){
+        if (idx == allIdx) {
             selectedTags.removeAll();
-        }else{
+        } else {
             selectedTags.remove(allIdx);
         }
 
-        if(selectedTags.indexOf(idx) == -1){
+        if (selectedTags.indexOf(idx) == -1) {
             selectedTags.push(idx);
-        }else{
+        } else {
             selectedTags.remove(idx);
 
-            if(selectedTags().length == 0){
+            if (selectedTags().length == 0) {
                 selectedTags.push(allIdx);
             }
         }
-        
-        SetTagsEnable(e.target); 
+
+        SetTagsEnable(e.target);
         e.target.selectedIndex = 0;
     }
 
 
 
     PageLoad();
+}
+
+
+function SetMainPost(post) {
+    
+    // SmoothScrollToTop();
+    SmoothScrollToElement($("#Title")[0]);
+
+    mainPost(post);
+
+    let searchParams = GetSearchParams();
+    searchParams.set("post", post.title);
+    let newPath = SearchParamsUrl(searchParams);
+    window.history.pushState(newPath, "tttt", newPath);
+}
+
+function ClosePost() {
+    mainPost(null);
+    let searchParams = GetSearchParams();
+    searchParams.delete("post");
+    let newPath = SearchParamsUrl(searchParams);
+    window.history.pushState(newPath, "tttt", newPath);
+}
+
+function LoadPostFromSearchParams() {
+    let searchParams = GetSearchParams();
+    let navPost = searchParams.get("post");
+    if (navPost) {
+        LoadPost(navPost);
+    }
+}
+
+function LoadPost(title) {
+    let post = posts().find(x => x.title == title);
+    mainPost(post);
+}
+
+window.onpopstate = function (e) {
+
+    if (!e.state) {
+        mainPost(null);
+        return;
+    }
+
+    LoadPostFromSearchParams();
 }

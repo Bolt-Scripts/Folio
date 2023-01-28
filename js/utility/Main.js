@@ -27,3 +27,53 @@ function includeHTML() {
 }
 
 includeHTML();
+
+function GetSearchParams(overrideURL) {
+  return new URLSearchParams(new URL(overrideURL ? overrideURL : window.location.href).search);
+}
+
+function SearchParamsUrl(searchParams) {
+  return window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + searchParams.toString();
+
+}
+
+function UpdateUrlParams(searchParams) {
+  window.location.href = SearchParamsUrl(searchParams);
+}
+
+
+function SmoothScrollToTop() {
+  // Get the current Y position of the scroll
+  const currentY = window.scrollY;
+
+  // Set the animation duration (in milliseconds)
+  const duration = 100;
+
+  // Calculate the number of steps for the animation
+  const step = Math.round(currentY / (duration / 15));
+
+  // Perform the animation
+  let i = 0;
+  const scrollInterval = setInterval(() => {
+      // Scroll to the next step
+      window.scrollTo(0, currentY - (step * i));
+
+      // Increment the step counter
+      i++;
+
+      // If we've reached the top of the page, clear the interval
+      if (currentY - (step * i) <= 0) {
+          clearInterval(scrollInterval);
+      }
+  }, 15);
+}
+
+
+function SmoothScrollToElement(element) {
+
+  // Check if the element exists
+  if (element) {
+      // Scroll the element into view with smooth behavior
+      element.scrollIntoView({ behavior: 'smooth' });
+  }
+}
