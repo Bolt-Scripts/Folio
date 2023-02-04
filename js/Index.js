@@ -26,9 +26,10 @@ function Index() {
 
         let likesRef = database.ref(`blogposts/${post.id}/likes`);
         let newLikes = post.likes();
-        likesRef.transaction(current => {
-            return (newLikes = (current || 0) + 1);
-        }, () => { post.likes(newLikes) });
+        likesRef.transaction(
+            current => (newLikes = (current || 0) + 1),
+            () => post.likes(newLikes)
+        );
     }
 
     PageLoad = function () {
@@ -177,7 +178,6 @@ function LoadPost(title) {
 }
 
 window.onpopstate = function (e) {
-
     if (!e.state) {
         mainPost(null);
         return;
@@ -185,3 +185,12 @@ window.onpopstate = function (e) {
 
     LoadPostFromSearchParams();
 }
+
+//something is somehow blocking links so just manually handle it here
+$(document).on('click', 'a', function (e) {
+
+    console.log(e);
+    let href = e.currentTarget.href;
+    let targ = e.currentTarget.target;
+    window.open(href, targ);
+ });

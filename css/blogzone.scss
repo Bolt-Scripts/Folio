@@ -92,6 +92,15 @@ $mainCol: #34865c;
             color: $mainCol; 
         }
 
+        a{
+            font-weight: bolder;            
+        }
+
+        pre{
+            white-space: pre-wrap;
+            font-family: inherit;
+        }
+
         .info{
 
             cursor: pointer;

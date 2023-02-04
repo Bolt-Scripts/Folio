@@ -73,6 +73,13 @@
   padding: 0;
   color: #34865c;
 }
+.blog-zone .blog-post a {
+  font-weight: bolder;
+}
+.blog-zone .blog-post pre {
+  white-space: pre-wrap;
+  font-family: inherit;
+}
 .blog-zone .blog-post .info {
   cursor: pointer;
   display: contents;

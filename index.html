@@ -76,13 +76,13 @@
                 </div>
                 <div class="img" data-bind="html:imgurl"></div>
                 <p class="description" data-bind="html:description"></p>
-                <p class="post-content" data-bind="html:msg"></p>
+                <pre class="post-content" data-bind="html:msg"></pre>
             </div>
             
             <div class="likes-container" data-bind="css:{active:likeClicked}">
                 <span data-bind="text:likes"></span>
                 <button data-bind="click:LikePost"></button>
-                <span data-bind="text:tags.join(',')">Tags</span>
+                <span data-bind="text:tags.join(', ')">Tags</span>
             </div>
 
             <button class="back-btn" data-bind="event:{click:ClosePost}">Close Post</button>
