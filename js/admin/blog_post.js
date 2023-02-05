@@ -37,6 +37,7 @@ function BlogPost() {
                         post = postsJSON[key];
                         post.id = key;
                         posts.push(post);
+                        console.log(post);
                     }
                 });
 
@@ -51,11 +52,28 @@ function BlogPost() {
             });
     }
 
+    function UpdatePost(existing, blogpost = {}) {
+        if (blogpost.description) existing.description = blogpost.description;
+        if (blogpost.msg) existing.msg = blogpost.msg;
+        if (blogpost.imgurl) existing.imgurl = blogpost.imgurl;
+        if (tags() && blogpost.tags) existing.tags = blogpost.tags;
+
+        console.log(existing);
+
+        let postRef = database.ref(`blogposts/${existing.id}`);
+        postRef.transaction(
+            () => existing
+        );
+        let msg = "Updated Post: " + existing.id;
+        formElm.innerHTML += "<p>" + msg + "</p>";
+        console.log(msg);
+    }
+
     this.post = function () {
         let blogpost = {
             title: title(),
             description: description(),
-            msg: msg(),
+            msg: msg().split("\n"),
             imgurl: imgurl(),
             likes: 0,
             tags: tags().replace(/\s/g, '').split(","),
@@ -64,21 +82,7 @@ function BlogPost() {
 
         let existing = posts.find(x => x.title == blogpost.title);
         if (existing) {
-            
-            if(blogpost.description) existing.description = blogpost.description;
-            if(blogpost.msg) existing.msg = blogpost.msg;
-            if(blogpost.imgurl) existing.imgurl = blogpost.imgurl;
-            if(tags()) existing.tags = blogpost.tags;
-            
-            console.log(existing);
-
-            let postRef = database.ref(`blogposts/${existing.id}`);
-            postRef.transaction(
-                () => existing
-            );
-            let msg = "Updated Post: " + existing.id;
-            formElm.innerHTML += "<p>" + msg + "</p>";
-            console.log(msg);
+            UpdatePost(existing, blogpost);
             return;
         }
 

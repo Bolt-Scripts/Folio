@@ -53,14 +53,14 @@
                         <div class="blog-post"
                             data-bind="
                             visible:$data.Filter(),
-                            template:{name:'blogpost-template'}
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
                             ">
                         </div>
                     </div>
 
                 </div>
             </center>
-
         </div>
 
         <div include-html="html/utility/footer.html"></div>
@@ -69,9 +69,9 @@
         <!-- scripto stuff -->
         <script type="text/html" id="blogpost-template">
 
-            <div class="info" data-bind="event:{click:Click}">
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
                 <div style="display: flex; align-items: baseline;">
-                    <button class="back-btn" data-bind="event:{click:ClosePost}"><b>↩</b>&nbsp;</button>
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"><b>↩</b>&nbsp;</button>
                     <h4 class="post-title" data-bind="text:title"></h4>
                 </div>
                 <div class="img" data-bind="html:imgurl"></div>
@@ -85,7 +85,7 @@
                 <span data-bind="text:tags.join(', ')">Tags</span>
             </div>
 
-            <button class="back-btn" data-bind="event:{click:ClosePost}">Close Post</button>
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data">Close Post</button>
 
         </script>
 

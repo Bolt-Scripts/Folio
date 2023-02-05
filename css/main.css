@@ -51,12 +51,23 @@ footer > div {
   left: 0;
   bottom: 0px;
   padding: 25px 20px 10px;
-  z-index: -999;
   color: #c6c6c6;
 }
 footer > div > div {
   display: flex;
   justify-content: space-between;
+}
+footer a:link {
+  color: rgb(36, 159, 200);
+}
+footer a:visited {
+  color: rgb(59, 175, 143);
+}
+footer a:hover {
+  color: rgb(82, 236, 169);
+}
+footer a:active {
+  color: rgb(44, 155, 211);
 }
 footer .right {
   text-align: right;
@@ -73,6 +84,8 @@ html {
   background: linear-gradient(to bottom, #f4f4f4 0%, #efefef 57%, #c6c6c6 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f4f4f4", endColorstr="#c6c6c6",GradientType=0 );
   min-height: 100vh;
+  z-index: 100;
+  position: relative;
 }
 
 body {

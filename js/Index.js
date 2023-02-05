@@ -68,7 +68,7 @@ function Index() {
                 post.likeClicked = ko.observable(false);
                 post.likes = ko.observable(post.likes);
                 post.description = ko.observable(post.description);
-                post.msg = ko.observable(post.msg);
+                post.msg = ko.observable(post.msg.join("\n"));
 
                 post.Click = function () {
 
@@ -194,5 +194,8 @@ $(document).on('click', 'a', function (e) {
     console.log(e);
     let href = e.currentTarget.href;
     let targ = e.currentTarget.target;
+
+    if(href.startsWith("mailto")) return;
+    
     window.open(href, targ);
  });
