@@ -80,6 +80,9 @@
   white-space: pre-wrap;
   font-family: inherit;
 }
+.blog-zone .blog-post iframe {
+  margin: 10px;
+}
 .blog-zone .blog-post .info {
   cursor: pointer;
   display: contents;
