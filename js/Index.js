@@ -49,6 +49,7 @@ function Index() {
                 if (post) {
                     //update post
                     post.likes(pj.likes);
+                    post.msg(pj.msg);
                     continue;
                 }
 

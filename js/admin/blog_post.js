@@ -76,7 +76,9 @@ function BlogPost() {
             postRef.transaction(
                 () => existing
             );
-            console.log("updated post: " + existing.id);
+            let msg = "Updated Post: " + existing.id;
+            formElm.innerHTML += "<p>" + msg + "</p>";
+            console.log(msg);
             return;
         }
 
@@ -85,7 +87,7 @@ function BlogPost() {
         let ref = database.ref("blogposts");
         ref.push(blogpost, (err) => {
             if (!err) {
-                formElm.innerHTML += "<p>Succes</p>"
+                formElm.innerHTML += "<p>Success</p>"
             } else {
                 formElm.innerHTML += "<p>Failure</p>"
             }
