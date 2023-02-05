@@ -68,6 +68,7 @@ function Index() {
                 post.likeClicked = ko.observable(false);
                 post.likes = ko.observable(post.likes);
                 post.description = ko.observable(post.description);
+                post.msg = ko.observable(post.msg);
 
                 post.Click = function () {
 
