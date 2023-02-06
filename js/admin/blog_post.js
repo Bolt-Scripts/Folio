@@ -29,12 +29,14 @@ function BlogPost() {
                     for (let key of keys) {
 
                         let post = posts.find(x => x.id == key);
+                        let pj = postsJSON[key];
 
                         if (post) {
+                            post.date = pj.date;
                             continue;
                         }
 
-                        post = postsJSON[key];
+                        post = pj;
                         post.id = key;
                         posts.push(post);
                         console.log(post);
@@ -52,7 +54,14 @@ function BlogPost() {
             });
     }
 
-    function UpdatePost(existing, blogpost = {}) {
+    this.AppendInfo = function(str){
+            formElm.innerHTML += `<p>${str}</p>`;
+
+        ko.cleanNode(formElm);
+        ko.applyBindings(this, formElm);
+    }
+
+    this.UpdatePost = function(existing, blogpost = {}) {
         if (blogpost.description) existing.description = blogpost.description;
         if (blogpost.msg) existing.msg = blogpost.msg;
         if (blogpost.imgurl) existing.imgurl = blogpost.imgurl;
@@ -65,7 +74,7 @@ function BlogPost() {
             () => existing
         );
         let msg = "Updated Post: " + existing.id;
-        formElm.innerHTML += "<p>" + msg + "</p>";
+        this.AppendInfo(msg);
         console.log(msg);
     }
 
@@ -82,7 +91,7 @@ function BlogPost() {
 
         let existing = posts.find(x => x.title == blogpost.title);
         if (existing) {
-            UpdatePost(existing, blogpost);
+            this.UpdatePost(existing, blogpost);
             return;
         }
 
@@ -91,13 +100,10 @@ function BlogPost() {
         let ref = database.ref("blogposts");
         ref.push(blogpost, (err) => {
             if (!err) {
-                formElm.innerHTML += "<p>Success</p>"
+                this.AppendInfo("Success");
             } else {
-                formElm.innerHTML += "<p>Failure</p>"
+                this.AppendInfo("Failure");
             }
-
-            ko.cleanNode(formElm);
-            ko.applyBindings(this, formElm);
         });
     }
 }

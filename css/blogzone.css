@@ -93,6 +93,7 @@
   max-height: 20vmin;
   display: inline;
   margin: 0.25vmin;
+  border-radius: 6px;
 }
 .blog-zone .blog-post .info > p {
   -webkit-margin-before: 0.5em;
