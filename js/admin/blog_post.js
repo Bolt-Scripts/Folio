@@ -3,10 +3,10 @@
 function BlogPost() {
 
     title = ko.observable();
+    imgurl = ko.observable("");
     description = ko.observable("");
     key = ko.observable();
     msg = ko.observable("");
-    imgurl = ko.observable("");
     tags = ko.observable("");
 
     let encryptedUN = "U2FsdGVkX1+dIw2Su8v8WxWW86FuvuDt9gvfh2veI2A=";
@@ -52,6 +52,20 @@ function BlogPost() {
             .catch((err) => {
                 console.log(err);
             });
+    }
+
+    FetchFromTitle = function(){
+        
+        let tit = title();
+        let wantedPost = posts.find(x => x.title == tit);
+        if(!wantedPost) return;
+
+        console.log(wantedPost);
+
+        imgurl(wantedPost.imgurl);
+        description(wantedPost.description);
+        msg(wantedPost.msg.join("\n"));
+        tags(wantedPost.tags.join(", "));
     }
 
     this.AppendInfo = function(str){

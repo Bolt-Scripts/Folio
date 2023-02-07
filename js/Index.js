@@ -69,6 +69,8 @@ function Index() {
                 post.likes = ko.observable(post.likes);
                 post.description = ko.observable(post.description);
                 post.msg = ko.observable(post.msg.join("\n"));
+                post.date = post.date ? new Date(post.date) : new Date("0");
+                if (!post.cool) post.cool = 0;
 
                 post.Click = function () {
 
@@ -95,6 +97,10 @@ function Index() {
 
             if (!pageLoaded) {
                 LoadPostFromSearchParams();
+
+                let sortSelector = $("#sort")[0];
+                sortSelector.selectedIndex = 1;
+                Sort(null, {target: sortSelector});
             }
 
             pageLoaded = true;
@@ -134,19 +140,53 @@ function Index() {
                 selectedTags.push(allIdx);
             }
         }
-
         SetTagsEnable(e.target);
         e.target.selectedIndex = 0;
     }
 
+    currentSort = "Cool";
+    sortType = ko.observable("Select");
+    sortDir = false;
+    Sort = function (contex, e) {
 
+        let newSort = sortType();
+        console.log(e);
+
+        if (newSort == currentSort) {
+            sortDir = !sortDir;
+        } else {
+            sortDir = false;
+        }
+
+        if (sortDir) {
+            posts.sort((a, b) => a[newSort] - b[newSort]);
+        } else {
+            posts.sort((a, b) => b[newSort] - a[newSort]);
+        }
+
+        AfterSort(e.target);
+
+        currentSort = newSort;
+        e.target.selectedIndex = 0;
+    }
+
+    AfterSort = function (select) {
+        for (let i = 0; i < select.length; i++) {
+            let e = select[i];
+            let idx = e.innerText.indexOf(" ");
+            if (idx == -1) idx = e.innerText.length;
+            let sub = e.innerText.substr(0, idx);
+            let sel = i == select.selectedIndex;
+            e.innerText = sub + (!sel ? '' : (sortDir ? " 🔺" : " 🔻"));
+        }
+    }
 
     PageLoad();
 }
 
 
 function SetMainPost(post) {
-    
+
     // SmoothScrollToTop();
     SmoothScrollToElement($("#Title")[0]);
 
@@ -195,7 +235,7 @@ $(document).on('click', 'a', function (e) {
     let href = e.currentTarget.href;
     let targ = e.currentTarget.target;
 
-    if(href.startsWith("mailto")) return;
-    
+    if (href.startsWith("mailto")) return;
+
     window.open(href, targ);
- });
+});

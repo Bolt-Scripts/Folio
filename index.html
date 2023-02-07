@@ -39,6 +39,13 @@
                             data-bind="options:allTags, optionsAfterRender: SetTagEnable,
                             event: {change:SelectTags}">
                         </select>
+
+                        Sort:
+                        <select name="" id="sort" data-bind="value:sortType, event: {change:Sort}">
+                            <option value="select">Select</option>
+                            <option value="cool">Coolness</option>
+                            <option value="date">Date</option>
+                        </select>
                     </div>
 
 
