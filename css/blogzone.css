@@ -89,11 +89,14 @@
   display: contents;
 }
 .blog-zone .blog-post .info img {
-  max-width: 100%;
+  max-width: 97.5%;
   max-height: 20vmin;
   display: inline;
   margin: 0.25vmin;
   border-radius: 6px;
+}
+.blog-zone .blog-post .info video {
+  max-width: 97.5%;
 }
 .blog-zone .blog-post .info > p {
   -webkit-margin-before: 0.5em;

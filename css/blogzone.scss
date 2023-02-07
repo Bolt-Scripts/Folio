@@ -110,16 +110,19 @@ $mainCol: #34865c;
 
             cursor: pointer;
             display: contents;
-
             
-            
-            img{
-                max-width: 100%;
+            img {
+                max-width: 97.5%;
                 max-height: 20vmin;
                 display: inline;
                 margin: .25vmin;
                 border-radius: 6px;
             }
+
+            video{
+                max-width: 97.5%;
+            }
+
             
             >p{
                 margin-block-start: 0.5em;
