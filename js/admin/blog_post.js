@@ -68,7 +68,7 @@ function BlogPost() {
         description(wantedPost.description);
         msg(wantedPost.msg.join("\n"));
         tags(wantedPost.tags.join(", "));
-        cool(wantedPost.cool);
+        cool(Number(wantedPost.cool));
     }
 
     this.AppendInfo = function(str){
@@ -83,6 +83,7 @@ function BlogPost() {
         if (blogpost.msg) existing.msg = blogpost.msg;
         if (blogpost.imgurl) existing.imgurl = blogpost.imgurl;
         if (tags() && blogpost.tags) existing.tags = blogpost.tags;
+        if(blogpost.cool) existing.cool = blogpost.cool
 
         console.log(existing);
 
@@ -104,7 +105,7 @@ function BlogPost() {
             likes: 0,
             tags: tags().replace(/\s/g, '').split(","),
             date: new Date().toDateString(),
-            cool: cool(),
+            cool: Number(cool()),
         };
 
         let existing = posts.find(x => x.title == blogpost.title);

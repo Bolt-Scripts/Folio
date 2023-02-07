@@ -99,6 +99,7 @@ function Index() {
                 LoadPostFromSearchParams();
 
                 let sortSelector = $("#sort")[0];
+                sortType("cool");
                 sortSelector.selectedIndex = 1;
                 Sort(null, {target: sortSelector});
             }
@@ -144,7 +145,7 @@ function Index() {
         e.target.selectedIndex = 0;
     }
 
-    currentSort = "Cool";
+    currentSort = "";
     sortType = ko.observable("Select");
     sortDir = false;
     Sort = function (contex, e) {
