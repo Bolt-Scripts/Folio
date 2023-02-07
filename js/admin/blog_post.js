@@ -8,6 +8,7 @@ function BlogPost() {
     key = ko.observable();
     msg = ko.observable("");
     tags = ko.observable("");
+    cool = ko.observable(0);
 
     let encryptedUN = "U2FsdGVkX1+dIw2Su8v8WxWW86FuvuDt9gvfh2veI2A=";
     let formElm = $("#msform")[0];
@@ -33,6 +34,7 @@ function BlogPost() {
 
                         if (post) {
                             post.date = pj.date;
+                            post.cool = pj.cool;
                             continue;
                         }
 
@@ -66,6 +68,7 @@ function BlogPost() {
         description(wantedPost.description);
         msg(wantedPost.msg.join("\n"));
         tags(wantedPost.tags.join(", "));
+        cool(wantedPost.cool);
     }
 
     this.AppendInfo = function(str){
@@ -101,6 +104,7 @@ function BlogPost() {
             likes: 0,
             tags: tags().replace(/\s/g, '').split(","),
             date: new Date().toDateString(),
+            cool: cool(),
         };
 
         let existing = posts.find(x => x.title == blogpost.title);

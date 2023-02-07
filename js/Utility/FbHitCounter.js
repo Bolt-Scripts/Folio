@@ -5,9 +5,8 @@
         let ip = data.ip.replace(/\./g, ",");
         let loc = (location.host + location.pathname).replace(/\./g, ",").replace(/\//g, "-");
         let pagePath = `/hitCounts/${loc}/${ip}`;
+        // console.log(pagePath);
 
-        console.log(pagePath);
-        
         let ref = database.ref(pagePath);
         let pageViews;
         //ref.on('value', data => {console.log(data)}, err => {});

@@ -12,5 +12,4 @@
   firebase.initializeApp(config);
 
   database = firebase.database();
-  auth = firebase.auth();  
 })();
