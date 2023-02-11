@@ -49,7 +49,7 @@
 .blog-zone .main-post .back-btn {
   display: block !important;
 }
-.blog-zone .main-post img {
+.blog-zone .main-post img, .blog-zone .main-post video {
   max-height: 45vmin !important;
   margin: 1.25vmin !important;
 }
@@ -88,15 +88,12 @@
   cursor: pointer;
   display: contents;
 }
-.blog-zone .blog-post .info img {
+.blog-zone .blog-post .info img, .blog-zone .blog-post .info video {
   max-width: 97.5%;
   max-height: 20vmin;
   display: inline;
   margin: 0.25vmin;
   border-radius: 6px;
-}
-.blog-zone .blog-post .info video {
-  max-width: 97.5%;
 }
 .blog-zone .blog-post .info > p {
   -webkit-margin-before: 0.5em;

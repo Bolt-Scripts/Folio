@@ -63,7 +63,7 @@ $mainCol: #34865c;
             display: block !important;
         }
 
-        img{
+        img, video{
             max-height: 45vmin !important;
             margin: 1.25vmin !important;
         }
@@ -111,16 +111,12 @@ $mainCol: #34865c;
             cursor: pointer;
             display: contents;
             
-            img {
+            img, video{
                 max-width: 97.5%;
                 max-height: 20vmin;
                 display: inline;
                 margin: .25vmin;
                 border-radius: 6px;
-            }
-
-            video{
-                max-width: 97.5%;
             }
 
             
