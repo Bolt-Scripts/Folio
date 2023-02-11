@@ -63,7 +63,7 @@ $mainCol: #34865c;
             display: block !important;
         }
 
-        img, video{
+        img, video, iframe{
             max-height: 45vmin !important;
             margin: 1.25vmin !important;
         }
@@ -111,7 +111,7 @@ $mainCol: #34865c;
             cursor: pointer;
             display: contents;
             
-            img, video{
+            img, video, iframe{
                 max-width: 97.5%;
                 max-height: 20vmin;
                 display: inline;

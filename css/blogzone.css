@@ -49,7 +49,7 @@
 .blog-zone .main-post .back-btn {
   display: block !important;
 }
-.blog-zone .main-post img, .blog-zone .main-post video {
+.blog-zone .main-post img, .blog-zone .main-post video, .blog-zone .main-post iframe {
   max-height: 45vmin !important;
   margin: 1.25vmin !important;
 }
@@ -88,7 +88,7 @@
   cursor: pointer;
   display: contents;
 }
-.blog-zone .blog-post .info img, .blog-zone .blog-post .info video {
+.blog-zone .blog-post .info img, .blog-zone .blog-post .info video, .blog-zone .blog-post .info iframe {
   max-width: 97.5%;
   max-height: 20vmin;
   display: inline;
