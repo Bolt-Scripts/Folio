@@ -9,6 +9,7 @@ function BlogPost() {
     msg = ko.observable("");
     tags = ko.observable("");
     cool = ko.observable(0);
+    date = ko.observable("");
 
     let encryptedUN = "U2FsdGVkX1+dIw2Su8v8WxWW86FuvuDt9gvfh2veI2A=";
     let formElm = $("#msform")[0];
@@ -69,6 +70,7 @@ function BlogPost() {
         msg(wantedPost.msg.join("\n"));
         tags(wantedPost.tags.join(", "));
         cool(Number(wantedPost.cool));
+        date(wantedPost.date)
     }
 
     this.AppendInfo = function(str){
@@ -83,7 +85,8 @@ function BlogPost() {
         if (blogpost.msg) existing.msg = blogpost.msg;
         if (blogpost.imgurl) existing.imgurl = blogpost.imgurl;
         if (tags() && blogpost.tags) existing.tags = blogpost.tags;
-        if(blogpost.cool) existing.cool = blogpost.cool
+        if(blogpost.cool) existing.cool = blogpost.cool;
+        if(blogpost.date) existing.date = blogpost.date;
 
         console.log(existing);
 
@@ -95,6 +98,7 @@ function BlogPost() {
         this.AppendInfo(msg);
         console.log(msg);
     }
+    
 
     this.post = function () {
         let blogpost = {
@@ -104,7 +108,7 @@ function BlogPost() {
             imgurl: imgurl(),
             likes: 0,
             tags: tags().replace(/\s/g, '').split(","),
-            date: new Date().toDateString(),
+            date: date() ? date() : (new Date().toDateString()),
             cool: Number(cool()),
         };
 
