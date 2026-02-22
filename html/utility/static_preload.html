@@ -1,0 +1,1044 @@
+
+        <div class="bg">
+
+            <div><div class="top-nav-area">
+    <div>
+        <!-- <p>Projects</p>
+            <p>Games</p> -->
+    </div>
+
+    <div>
+        <div class="portrait">
+            <center>
+                <img src="imgs/portrait.png">
+            </center>
+        </div>
+
+        <center>
+            <h5>Scott Taggart - AKA: Bolt</h5>
+            <pre>I write code,<br>and make stuff.</pre>
+        </center>
+    </div>
+
+    <div class="right">
+        <!-- <p>Experiments</p>
+            <p>Downloads</p> -->
+    </div>
+</div></div>
+
+            <center>
+
+                <div class="blog-zone">
+
+                    <h2 id="Title" class="blog-title">This Is My Portfolio</h2>
+
+                    <div class="blog-options">
+                        Display:
+                        <select name="" id="" data-bind="value: displayType">
+                            <option value="feed-grid">Grid</option>
+                            <option value="feed-blog">Blog</option>
+                        </select>
+
+                        Tags:
+                        <select name="" id="tags" data-bind="options:allTags, optionsAfterRender: SetTagEnable,
+                            event: {change:SelectTags}"><option value="Select">Select</option><option value="All">✓All</option><option value="Tool">Tool</option><option value="Unity">Unity</option><option value="Game">Game</option><option value="Writing">Writing</option><option value="Art">Art</option><option value="GameJam">GameJam</option><option value="Shaders">Shaders</option><option value="Asset">Asset</option>
+                        </select>
+
+                        Sort:
+                        <select name="" id="sort" data-bind="value:sortType, event: {change:Sort}">
+                            <option value="select">Select</option>
+                            <option value="cool">Coolness 🔻</option>
+                            <option value="date">Date</option>
+                        </select>
+                    </div>
+
+
+                    <div id="MainPost" data-bind="if:mainPost()">
+                        <div class="blog-post main-post" data-bind="template:{name:'blogpost-template', data:mainPost}">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"><b>↩</b>&nbsp;</button>
+                    <h4 class="post-title" data-bind="text:title">RASCAL</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://assetstorev1-prd-cdn.unity3d.com/key-image/2f31bb85-b721-4615-8d31-6fc9a8adb834.webp"></div>
+                <p class="description" data-bind="html:description">Realtime skinned mesh colliders for Unity</p>
+                <pre class="post-content" data-bind="html:msg">I needed this ability for a project at some point so I created this. The acronym is somewhat lost on me now...
+It features real-time, and accurate collision for skinned meshes. It's simple to use, featuring asynchronous updates for stable performance, multi-threading, and deep customization.
+
+<a href="https://assetstore.unity.com/packages/tools/physics/rascal-skinned-mesh-collider-134833">The asset store page is here.</a></pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Unity, Asset</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data">Close Post</button>
+
+        </div>
+                    </div>
+
+
+                    <div data-bind="class:displayType, foreach:posts" class="feed-grid">
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">Bootleg Nanite</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://i.imgur.com/aqS0JmH.jpg"></div>
+                <p class="description" data-bind="html:description">A GPU driven micropolygon software rasterization shader setup</p>
+                <pre class="post-content" data-bind="html:msg"><div class="vsc-controller"></div><div class="vsc-controller"></div>
+This is probably one of my favorite technical excursions. I love using unconventional techniques to leverage GPU compute to do wacky stuff.
+And the idea of leveraging compute shaders to manually implement custom triangle rasterization for small triangles in order to bypass limitations of the traditional GPU raster pipeline is just so cool.
+Obviously I can't take credit for the idea I mean it's just based directly on UE5 nanite stuff. Still it was really fun and interesting to implement it myself for my own purposes.
+
+Here's an initial test just getting polygons on screen from all the chunk data.
+<video controls="" autoplay="" loop="" src="https://i.imgur.com/aqS0JmH.mp4" crossorigin="anonymous"></video>
+
+And a later test rendering dynamic high detail grass geometry.
+This has a few LODs that transition seamlessly due to how detailed everything is. And is also taking advantage of the 64bit intrinsics that make it possible to store depth and visibility data in a single texture using atomic operations.
+That is then decoded and rendered with a more normal shader pass. Not really necessary when just rendering with one material, but it's cool so...
+<video controls="" autoplay="" loop="" src="https://i.imgur.com/hMV1y2L.mp4" crossorigin="anonymous"></video></pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">3</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Art, Tool, Shaders, Unity</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">GrassFlow</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://assetstorev1-prd-cdn.unity3d.com/key-image/8698297c-3b5c-4522-845e-b22c0152f705.webp"></div>
+                <p class="description" data-bind="html:description">A highly interactive/customizable grass shader system.</p>
+                <pre class="post-content" data-bind="html:msg">
+I won't say too much about this here since the details are already on the asset store page here: <a href="https://u3d.as/2Ppi">https://u3d.as/2Ppi</a>
+
+Artistic promo video:
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/_GW2NNjEKls" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+
+I think this is one of my most proud creations, just a lot of cool stuff has gone into this and it's rewarding to create tools that people enjoy.
+Also one of the most frustrating creations though, as trying to write a complicated shader system that somehow works across all platforms and hardware is basically a nightmare.
+Plus every now and then I have to like go back and write a new render mode with new ideas and idunno, so much work has gone into it, but I don't feel like it's fully gotten the love it deserves honestly.</pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">2</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Unity, Asset, Tool, Shaders, Art</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">Tokimeki Tetromance: Battle</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://imgur.com/YAgxmTU.png"></div>
+                <p class="description" data-bind="html:description">A WIP battle stacking game</p>
+                <pre class="post-content" data-bind="html:msg"><div class="vsc-controller"></div><div class="vsc-controller"></div><div class="vsc-controller"></div>
+Not sure if I should be putting this here yet but, eh.
+This is a game I'm making and hope to release eventually inspired by the classic Tetris Battle Gaiden, and visually inspired by Tetrio.
+Tetrio frustrated me with it's outdated strict ruleset gameplay and it's been very stale with no updates, so I really wanted to make a block stacker with some fresh juice so I started working on this.
+Most of this was thrown together in about a month so far and features a much looser interpretation of stacking rules like spins and such and creating a health system instead of losing immediately when topping out. Among adding offensive and defensive abilities as well as ultimates based on the character system.
+The 'romance' part of the title hints at the potential of adding small persona style relationship building scenes with characters as you level them up. But also is just a play on words for like 'tetromancy' in the same way 'pyromancy' exists as a field of magical abilities.
+So far most of the framework is implemented including characters and ablilties even including networked play via steamworks. A lot that's left to do is implementing more characters and abilities along with all the UI to deal with characters and customization.
+
+A couple of small ultimate ability demos:
+<video autoplay="" controls="" loop="" src="https://i.imgur.com/JvWs36j.mp4" crossorigin="anonymous"></video>
+<video controls="" loop="" src="https://i.imgur.com/6PBGRED.mp4" crossorigin="anonymous"></video>
+
+A terrible network battle demo playing against myself but I can't play two games at once:
+<video controls="" loop="" src="https://i.imgur.com/kTolKdo.mp4" crossorigin="anonymous"></video></pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Game, Unity</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">Planted</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://img.itch.zone/aW1nLzEyNzMyOTQ3LnBuZw==/315x250%23c/CJkAtB.png"></div>
+                <p class="description" data-bind="html:description">A moody farming sim. Only this time, you're the plant.</p>
+                <pre class="post-content" data-bind="html:msg">
+A GMTK game jam 2023 submission.
+One of our favorites, this game actually has a decent amount of strategy and replayability for higher scores.
+I think it's quite charming with the farmer getting angry at you if you don't grow well.
+Nothing too technical about it, just growing a tree/node system with physics joints.
+But decently polished and I never understand how these game jam projects end up looking as good as they do in only 48 hours, but the art stuff is thanks to Richard.
+
+<a href="https://boltsoft.itch.io/planted">It can be played here.</a>
+<img src="https://img.itch.zone/aW1hZ2UvMjE1OTMxMS8xMjc1NjA5Ni5qcGc=/original/Dm0tnM.jpg">
+<img src="https://img.itch.zone/aW1hZ2UvMjE1OTMxMS8xMjc1NjA5OS5wbmc=/original/8916nr.png"></pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Unity, Game, GameJam</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">Error To The Throne</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://img.itch.zone/aW1nLzIzMTk3NTM0LmdpZg==/original/6y5L4U.gif"></div>
+                <p class="description" data-bind="html:description">A chaotic survival shooter where every powerup breaks the game more and more.</p>
+                <pre class="post-content" data-bind="html:msg">
+Perhaps our best game jam entry IMO.
+Even though it didn't place very well because unfortunately game jams are more of a popularity contest than it is anything to do with merit... 😤
+
+Anyway, for a few days work it's a pretty fun little roguelite shooter.
+I think we found the theme "The Error Is the Feature" challenging as almost every idea just loops back to making the game buggy on purpose or adding silly effects. I don't think we really escaped that vibe but we chose to at least make something fun rather than sit there without ideas forever.
+I remember stressing out and locking in to implement as many buff and error effects as I could before the deadline once the rest of the game was mostly finalized. Good times.
+<img width="350" src="https://img.itch.zone/aW1hZ2UvMzg4NDc3MC8yMzIxNjc1NC5naWY=/original/z5SVsr.gif">
+
+
+It gets really fun when you manage to stack up all the buffs to overpower the ridiculous visual onslaught of nonsense happening.
+<a href="https://boltsoft.itch.io/error-to-the-throne">It can be played here.</a>
+<img src="https://img.itch.zone/aW1hZ2UvMzg4NDc3MC8yMzE5MzUzOC5qcGc=/original/IZg6iv.jpg"></pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Unity, Game, GameJam</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">AutoDepth</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2552330/header.jpg"></div>
+                <p class="description" data-bind="html:description">An image viewer to view any image in 3D automatically</p>
+                <pre class="post-content" data-bind="html:msg">
+The concept of being able to automatically transform images into a 3D experience has always interested me. Really just any means of transforming content into something new with no effort I guess.
+Originally I was inspired to make a concept for this once Midas 3 came out and the results seemed like they might finally be decent enough and I had gotten a shower thought on how to render them using ray marching essentially treating the depth map as a distance field.
+I think I figured out later that this is basically the same technique used for screenspace reflections in games, tracing the already existing depth and color buffers of the game for relatively cheap reflections.
+It took a bit of finagling but with relatively little effort I was able to easily implement this and the results were better than expected. Looking for a simple new project to take on I decided to turn this into an app I could sell.
+So I polished it up and made it as simple as possible to run on any hardware without messing with dumb python github projects.
+It hasn't gone gangbusters but it's sold alright and reviewed well and I'm glad to have been able to make something that people enjoy.
+Probably would have done better but I suck at marketing.
+Since then I've occasionally updated it with new models and features.
+<a href="https://store.steampowered.com/app/2552330/AutoDepth_Image_Viewer/">Available on steam here.</a>
+
+<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2552330/ss_12317857239a6d0002f4d3b2f6f21fbfe56c37fa.1920x1080.jpg">
+<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2552330/ss_fd339b2127a78aa61ec1cd22dbc674e2d5097957.1920x1080.jpg">
+<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2552330/ss_06d0bde81dfec2ac68cbde4825c4dbcef7dc99c9.1920x1080.jpg"></pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Unity, Game, Tool</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">Raytracer</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://i.imgur.com/RRpIVNg.png"></div>
+                <p class="description" data-bind="html:description">A from-scratch GPU accelerated ray tracing engine.</p>
+                <pre class="post-content" data-bind="html:msg">
+At some point I got really interested in raytracing for some reason. I mean it's pretty cool so, y'know.
+This whole project was all developed off the dome without really looking at many resources about the topic. Not really trying to brag but I just feel you learn better by figuring things out yourself, and this topic felt pretty intuitive to me.
+
+I learned a lot about 3D math and rendering techniques here, as well as it being the motivation to dive into compute shaders for GPU acceleration and I've used that compute knowledge to great effect in almost all of my other projects.
+
+Here is the full album of various progress images as I was working on this.
+<iframe allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="height: 500px; width: 400px; margin: 10px 0px; padding: 0px;" class="imgur-embed-iframe-pub imgur-embed-iframe-pub-a-ZYx19-false-400" scrolling="no" src="https://imgur.com/a/ZYx19/embed?pub=true&amp;ref=https%3A%2F%2Fbolt-scripts.github.io%2FFolio%2F&amp;context=false&amp;w=400" id="imgur-embed-iframe-pub-a-ZYx19"></iframe><script async="" src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+
+This was also a billion years ago right out of highschool, so a bit dated and long before NVIDIA raytracing, but pretty cool nonetheless.</pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Unity, Shaders</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">Dialogue System</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://i.imgur.com/5Z4Bzt8.png"></div>
+                <p class="description" data-bind="html:description">A node-based dialogue tree editor.</p>
+                <pre class="post-content" data-bind="html:msg"><div class="vsc-controller"></div>
+This was a pretty fun project, even though I'm not usually a fan of node based systems, I feel like it makes a lot of sense for writing interactive dialogue trees as compared to the awfulness of something like RenPy, but it's by-the-by.
+Making stuff like this just solidifies the idea that making tools is one of the most fun things to work on.
+
+
+An example dealing with quests:
+<a href="https://i.imgur.com/3aPr2nd.png"><img height="9000px" src="https://i.imgur.com/3aPr2nd.png"></a>
+
+
+Some other interesting available node types:
+<img src="https://i.imgur.com/QQenemn.png">
+
+
+Demo video of the gameplay side of things:
+<video controls="" autoplay="" loop="" src="https://i.imgur.com/WRXO5jS.mp4" crossorigin="anonymous"></video>
+(Please disregard the Persona 5 themed placeholders)
+This was designed for a VR game, so the options would float around the character's head and the player would simply look at the option and press a button to select it.
+I liked the wibblyness of the options.</pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Unity, Tool</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">Space Game Prototype</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://imgur.com/J8ti0MD.jpg"></div>
+                <p class="description" data-bind="html:description">Combat and physical simulation focused space game</p>
+                <pre class="post-content" data-bind="html:msg"><div class="vsc-controller"></div><div class="vsc-controller"></div>
+I love the idea of space ship combat and stuff but basically every game that exists doesn't really have the vibe I want. They either focus too much on the scale of space battles so much that you lose the personal control and visceral feeling, or they just don't really have the specific flavor of punch I want and use lame weapons like pew pew lasers and energy weapons.
+I want more of a vibe of like WW2 battleships and large navy battles, but in space...
+Being able to fully customize your weapons and fleet and putting a focus on the physicality of everything being weighty and punchy. Firing a battery of large space guns shooting large kinetic and explosive projectiles should push your ship around y'know.
+I also just wanted to have full manual control of everything from the biggest ship to the smallest fighters.
+I imagined this game as mostly just a sandbox to mess around in but it never got past the prototype phase because it's hard to say if it really made sense for me to pour my whole life for years into it...
+The concepts I made for this were largely inspired by a game called Starsector.
+
+Anyyyway I still ended up making some really cool stuff for it so here it is:
+This shows off the manual gun targeting interface and shield stuff, noting the guns have joints and stuff with recoil and camera shake when zoomed in and all that nice stuff.
+<video controls="" autoplay="" loop="" src="https://i.imgur.com/J8ti0MD.mp4" crossorigin="anonymous"></video>
+
+But the coolest thing I made for this has to be the fully dynamic damage modeling.
+This system works based on a volumetric damage map that tracks both deformation and heat.
+The result is really cool and allows dynamic deformation across large ship surfaces without any extra modeling effort, it's based on a distance based tessellation which based gives automatic LOD. Ships far away from the camera are basically just surface texture blending, while the closer you get, the more actual deformation you see.
+This system was meant to be combined with a more intentional simple fracturing system so that parts of ships can be torn apart or completely blown off.
+<video controls="" autoplay="" loop="" src="https://i.imgur.com/2YIdOe2.mp4" crossorigin="anonymous"></video>
+</pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Unity, Game</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">ScorpoLoco</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://img.itch.zone/aW1nLzU2NTQxMTMuanBn/315x250%23c/E2aaNI.jpg"></div>
+                <p class="description" data-bind="html:description">A free-running aerial-combat anime-inspired boss-battle game-jam</p>
+                <pre class="post-content" data-bind="html:msg">The name on this doesn't really mean anything other than that the boss is a scorpion-like creature and that it rhymes.
+Me and Richard had an idea to focus on making a boss fight for a game jam, and I'd really wanted to try for some fast paced speedy mid-air combat shenanigans. And this was the result I guess.
+I think we kinda ran out of time to implement more attacks so the combos are super basic.
+But I think the result of this was surprisingly cool for a few days work. It's fairly jank and difficult, but if you get good at it, you can pull off some satisfying moves.
+<img src="https://img.itch.zone/aW1hZ2UvOTkzNzc5LzU2NTQxMDQuanBn/794x1000/BixwUW.jpg">
+<img src="https://img.itch.zone/aW1hZ2UvOTkzNzc5LzU2NTQwNTUuanBn/794x1000/JUdwda.jpg">
+
+The movement system allows for a lot of freedom, you can run up and along walls, wall jump, mid-air dash, the whole works.
+I tried to make speed a component of combat by increasing attack damage the faster you go, but there wasn't a chance to add feedback for this so it doesn't feel great.
+But charging the special attack while sprinting gives a big speed boost to play into this mechanic.
+
+<img src="https://img.itch.zone/aW1hZ2UvOTkzNzc5LzU2NTQwODMuanBn/794x1000/CPTw6a.jpg">
+Tried to go ham with the effects
+
+
+Gameplay demo:
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/RfQoROSdt54" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+
+The game can be played here: <a href="https://boltsoft.itch.io/scorpoloco">https://boltsoft.itch.io/scorpoloco</a>
+(It's better if you download it though)</pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">2</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Game, GameJam, Unity</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">Trespunker</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://img.itch.zone/aW1nLzI5NTUyMDAucG5n/315x250%23c/CIIGOB.png"></div>
+                <p class="description" data-bind="html:description">FPS dino shooter gamejam</p>
+                <pre class="post-content" data-bind="html:msg">A cyberpunk portmanteau ripping off the game "Jurassic Park: Trespasser"
+I threw this together in a few days  for the final jam of a series I'd been following, not wanting to miss it.
+
+<img width="600" src="https://img.itch.zone/aW1hZ2UvNTYzMDgyLzI5NTU4NjcuZ2lm/794x1000/%2BlGvlM.gif">
+(Sorry for the low quality gif...)
+
+I was thinking about trespasser and its awkward controls, and I realized I already had an exceptionally awkward physically based character controller from a game we were working on at the time. It was a jank kbm control scheme for a VR rig, so it was not very good. But it works out for this premise.
+It's nothing too special but I still think it's a fun little romp with how quick I put it together by myself.
+Though Richard modeled the goofy dino for me, and did an excellent job I might add.
+<img src="https://img.itch.zone/aW1hZ2UvNTYzMDgyLzI5NTU4NjYuZ2lm/794x1000/pVM92M.gif">
+
+The voice lines I threw in from the original game at the last minute are somehow hilarious to me, especially in the changed context.
+
+There's a few hidden weapons scattered around along with accompanying goofy voice clips.
+I also took the time to implement some interactable characters with dialogue to make use of my (at the time) newly created <a href="?post=Dialogue System" target="_self">node-based dialogue system.</a>
+<img src="https://i.imgur.com/ZHT9lUa.jpg">
+(Yes, it is using Persona 5 themed placeholders)
+
+
+<img src="https://img.itch.zone/aW1hZ2UvNTYzMDgyLzI5NTU1ODIuanBn/794x1000/23AETh.jpg">
+
+
+The game definitely has a vibe and can be found here: <a href="https://boltsoft.itch.io/trespunker">https://boltsoft.itch.io/trespunker</a>
+</pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Game, GameJam, Unity</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">TP45</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://img.itch.zone/aW1hZ2UvMTUyNDU4LzY5Nzk0Ny5wbmc=/original/LPFCf1.png"></div>
+                <p class="description" data-bind="html:description">FPS GameJam with custom GPU accelerated raytracing, before it was cool</p>
+                <pre class="post-content" data-bind="html:msg"><div class="vsc-controller"></div><div class="vsc-controller"></div><div class="vsc-controller"></div><div class="vsc-controller"></div><div class="vsc-controller"></div>Made quite a long time ago for an obscure GameJam, I pretty much used it as an excuse to try implement a custom GPU accelerated raytracer I'd been working on around that time.
+It was interesting because I needed to rework some things so that the acceleration structure could be rebuilt asynchronously to the rendering, because the method I was using could not be updated that fast, nor updated sparsely.
+On that note, some elements that needed to be more responsive were rendered traditionally and composited over the top. This was mainly just for the gun and I think particle effects since there wasn't an easy way to get particles into the acceleration structure.
+We kept polycounts pretty low but even with this the enemy movement is pretty choppy with the rate that acceleration structure could be updated.
+
+I also had to hack together a system to unload unseen rooms entirely, which ended up causing a bug where you can fall through the floor in hallways, didn't have time to fix that. Sometimes enemies get lost outside of the rooms as well making them unclearable and soft-locking the game.
+
+The only way we could think to take advantage of the raytracing was to add mirrors and allow the laser shots to reflect off of them. It's kind of a gimmick but it is pretty cool shooting at the reflection of an enemy and actually hitting them, and there were score modifiers for doing so.
+<video controls="" autoplay="" loop="" src="https://i.imgur.com/6cc5tuQ.mp4" crossorigin="anonymous"></video>
+
+The laser was actually implemented as a single sample volumetric light, which gives it a cool effect I think.
+Pretty simple as all you need to know is whether or not a ray passes through the column of the laser.
+ 
+My partner, Richard did all the models, animation, sound/music.
+Overall, kinda mid gameplay wise but it has a vibe.
+
+Here's an early development gif with a mirrored room and bouncing a laser all around:
+<video controls="" autoplay="" loop="" src="https://imgur.com/12XnqOy.mp4" crossorigin="anonymous"></video>
+
+Reflection kill demo:
+<video controls="" autoplay="" loop="" src="https://imgur.com/0h2UmmK.mp4" crossorigin="anonymous"></video>
+
+All weapons test:
+<video controls="" autoplay="" loop="" src="https://imgur.com/7dHSCfD.mp4" crossorigin="anonymous"></video>
+
+It's a bit hard to see but this is an enemy that has an orbiting mirror as a shield to reflect your shots back:
+<video controls="" autoplay="" loop="" src="https://imgur.com/VdvjF32.mp4" crossorigin="anonymous"></video>
+
+I had some more gifs for this but they seem to have been removed from gfycat as they were flagged as pornography :(
+But you get the picture.
+
+Game can be found here: <a href="https://boltsoft.itch.io/the-power-of-45-brains">https://boltsoft.itch.io/the-power-of-45-brains</a>
+If you were curious about the name of the game "The power of 45 brains" and thus the enemies in the game being brain themed, it was based on a concept of an article written that said that: by 2025, if you string all our smart devices together, they will have the combined thinking power of 45 human brains.
+I think originally the 45 brains were going to be individually named and the game would end when you beat them all, but that was obviously far too ambitious for a GameJam.</pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">GameJam, Game, Unity</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">Nanadigm Shift</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://img.itch.zone/aW1nLzE3MzgwNTUzLmpwZw==/315x250%23c/uOBtI%2B.jpg"></div>
+                <p class="description" data-bind="html:description">Shift your dimensions to uncover banana enlightenment</p>
+                <pre class="post-content" data-bind="html:msg">
+A pun on paradigm shift using bananas for scale, the theme of the 2024 GMTK game jam was "built to scale"
+I guess they always choose ridiculous difficult themes to work with because otherwise it's hard to stand out when theres 7.5K entries...
+But coming up with a concept that didn't just involve very lame ideas of 'get big to win' or whatever was quite challenging.
+I think this is the only time we've basically just given up because we had no good ideas.
+Still, after sleeping on it, we decided to push something out regardless. And while it didn't meet the theme really or do anything new, I think we still managed to make something that at least has charm and looks and feels cool to play.
+
+It's just a simple infinite runner type game that keeps getting faster as you play
+<img width="350" src="https://img.itch.zone/aW1hZ2UvMjkwNTQ0MS8xNzQ5MTk1NS5naWY=/original/jchawd.gif">
+
+
+<a href="https://ricardium.itch.io/nanadigm">It can be played here.</a>
+
+Here's a video demonstration with all the juicy sounds and stuff:
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/PmQa_ePK0pU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe></pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Unity, Game, GameJam</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"><b>↩</b>&nbsp;</button>
+                    <h4 class="post-title" data-bind="text:title">RASCAL</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://assetstorev1-prd-cdn.unity3d.com/key-image/2f31bb85-b721-4615-8d31-6fc9a8adb834.webp"></div>
+                <p class="description" data-bind="html:description">Realtime skinned mesh colliders for Unity</p>
+                <pre class="post-content" data-bind="html:msg">I needed this ability for a project at some point so I created this. The acronym is somewhat lost on me now...
+It features real-time, and accurate collision for skinned meshes. It's simple to use, featuring asynchronous updates for stable performance, multi-threading, and deep customization.
+
+<a href="https://assetstore.unity.com/packages/tools/physics/rascal-skinned-mesh-collider-134833">The asset store page is here.</a></pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Unity, Asset</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data">Close Post</button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">CPU Simulation</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://i.imgur.com/3cEi2o0.jpeg"></div>
+                <p class="description" data-bind="html:description">A from-scratch 16-bit CPU design</p>
+                <pre class="post-content" data-bind="html:msg"><div class="vsc-controller"></div>
+I wanted to better understand how computers work I guess so I just kinda started writing a logic simulation at the transistor level and built it up.
+Not too much to say about it but I made a simple assembly language thing for it and it supports a handful of useful instructions to make it turing complete.
+
+Here's a demo video of some simple program running on it and doing addition.
+<video controls="" autoplay="" loop="" src="https://i.imgur.com/ambePVu.mp4" crossorigin="anonymous"></video>
+
+And some ram
+<img src="https://i.imgur.com/FHnC7ZW.png"></pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Unity, Art</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">SYRONO</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://i.imgur.com/9dUtt3l.jpg"></div>
+                <p class="description" data-bind="html:description">An original novel project</p>
+                <pre class="post-content" data-bind="html:msg">I think a lot of people had their "Covid-project", and I guess this was mine.
+Inspired by a certain game I was playing that ended pretty poorly imo, I just jumped into writing my own story fueled by spite.
+I hadn't written much before so it was a novel project for me. (pun intended)
+It was pretty difficult at points but I found writing dialogue to be really satisfying and natural.
+
+A novel isn't particularly code related but I still think it definitely belongs as a part of my portfolio.
+While writing it I was surprised by how similar writing can be to programming, often the most difficult and the bulk of time spent is problem solving, trying to figure out a series of events to make a certain thing happen. I found this skillset maps well to writing where you have maybe an outline of events you want to happen and certain story beats to hit that creates a problem of how to tie it all together into a cohesive structure, how do your characters get from point A to B.
+It's a bit more creative than programming usually is, as in you have a lot more freedom on how to solve that problem, but (if you want a good story) you need it to at least make logical sense.
+Less so in figuring out how to make cool and epic moments though...
+
+Overall I'm pretty proud of the result, reading it back is enjoyable so that must mean something, though it's a bit more cringe than it used to be with so much time passed.
+Not sure how good it is really, narratively speaking. My friends tell me it's not half bad, but they are also my friends so. To be fair it's also not a genre of story they much care for either. 
+At the end of the day though I think maybeee 3-4 people besides myself have actually read it. Turns out it's really difficult to get people to read some random novel if they aren't like your friend who's interested to see what you did with yourself.
+But if nothing else this was something cool to see through to the end.
+
+
+I knew from the beginning that it'd be really cool to have a physical version of something like this, what with being used to only seeing stuff on a screen y'know.
+So I think that was a pretty big driving factor for me in getting it done, especially as it was nearing the end and things were getting more and more difficult to figure out how to satisfyingly conclude the story.
+But I'm glad I did because-
+<img src="https://i.imgur.com/muy3bqi.jpg">
+
+
+Another challenging aspect of this was the cover art.
+I don't have much traditional art skill, so it was an uphill battle. I'm really glad I pulled it together though because I think the result is pretty cool and makes the whole thing feel that much more real. I think it took somewhere about a month to put the whole thing together, most of which was struggling to draw and shade the characters, basically brute forcing everything.
+The background however took like a week to throw together in Unity and was a bit more comfortable for me. Basically just sculpted a simple terrain and slapped a bunch of trees on it and added some simple prefab town in the distance. I modified the shaders used to warp the world to appear more like an inside out planet as that's how it's written in the story, and I think it gives it a nice touch and helps being able to frame everything.
+And I was able to make use of my own grass shader setup, <a href="?post=GrassFlow" target="_self">GrassFlow</a>, to create the lush fields in the cover art. Especially in the distance it adds a subtle but much needed texture and depth to the terrain.
+Creating a nice unique piece of art was also really cool because (somehow) a couple of friends even ended up drawing fanart of my characters, which is insane to see when you're not used to that kind of thing.
+I even managed to work some of the sketches into the book before printing it to give it more of a light novel feel:
+<img src="https://i.imgur.com/BuUjQKA.jpg">
+Even if barely anyone will ever see this, it just feels so cool.
+
+Anyway I need to wrap this up, so I guess I'll mention that it can be read online <a href="https://www.wattpad.com/story/257558661-syrono" target="_blank">here.</a>
+As embarrassing as it is, I feel like it'd be a cop-out to write so much about it here and not post the link to it.</pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Writing, Art</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">Animated Raytracing Demo</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://i.imgur.com/HxyBRba.jpg"></div>
+                <p class="description" data-bind="html:description">A simple project showing an animated demonstration of raytracing.</p>
+                <pre class="post-content" data-bind="html:msg"><div class="vsc-controller"></div>
+I just wanted to create a simple tool to visualize raytracing the way I always visualized it in my head and <a href="https://github.com/Bolt-Scripts/Animated-Ray-Tracing-Demo">share it with people.</a>
+<video autoplay="" controls="" loop="" src="https://i.imgur.com/HxyBRba.mp4" crossorigin="anonymous"></video></pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">0</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Tool, Unity</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">My Portfolio</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://i.imgur.com/qLjFgMA.png"></div>
+                <p class="description" data-bind="html:description">You're looking at it.</p>
+                <pre class="post-content" data-bind="html:msg">
+It's a bit meta I guess, but I did make this page myself using minimal libraries and such.
+The posts are just stored on a simple firebase database allowing me to post and update stuff in realtime, which is neat.
+And hosted on github pages, because I am economical.</pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Writing, Art</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">3D Software Renderer</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://i.imgur.com/db6sHId.jpg"></div>
+                <p class="description" data-bind="html:description">A simple custom from-scratch 3D software renderer</p>
+                <pre class="post-content" data-bind="html:msg"><div class="vsc-controller"></div>
+At some point I wanted a better understanding of how 3D rendering works in terms of polygons and matrix stuff so I made this.
+Nothing too crazy but it was fun. 
+I remember having fun unknowingly implementing a deferred rendering model because I thought it'd be more performant. And coming up with a way to render shadows by myself. Fun times.
+
+<video controls="" autoplay="" loop="" src="https://i.imgur.com/db6sHId.mp4" crossorigin="anonymous"></video></pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Art, Tool</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">3D Fractal</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://imgur.com/h2f6RWT.jpg"></div>
+                <p class="description" data-bind="html:description">GPU Raymarched Mathematically Generated 3D Fractal Animation</p>
+                <pre class="post-content" data-bind="html:msg"><div class="vsc-controller"></div>An extension of my experience with ray tracing, I decided it'd be cool to implement a way to ray march as well.
+I wont pretend to understand how the math works to generate it, but the concept is a function that generates a signed distance to the surface of the Mandel bulb from a given position, which then lets us ray march the virtual signed distance field to create a cool picture.
+Then you can color things by number of marches needed to get nice colors and glow.
+To animate it, one of the factors of the function to generate the bulb is just modulated over time.
+The end result is this trippy animation.
+<video controls="" autoplay="" loop="" src="https://i.imgur.com/qDbBEzC.mp4" crossorigin="anonymous"></video></pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Shaders, Art</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">Dice Beat</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://img.itch.zone/aW1nLzk1MzU5NzYuanBn/315x250%23c/FBf3aO.jpg"></div>
+                <p class="description" data-bind="html:description">A dice-based RNG rhythm game</p>
+                <pre class="post-content" data-bind="html:msg">This was our submission for the 2022 GMTK gamejam that had the theme "roll of the dice".
+We, and I think a lot of people found this theme challenging because it's hard to make anything of it that isn't just "add rng", which isn't interesting.
+And I don't think we really succeeded with that, but the idea of a rhythm game came up and we thought adding some kind of randomized element to a rhythm game could be interesting, so we went for it.
+But let me tell you, making your first full on rhythm game in 48 hours is not advisable.
+<img src="https://img.itch.zone/aW1hZ2UvMTYyMjEyMi85NTM2MDUxLmpwZw==/794x1000/s2BiRD.jpg">
+
+The gameplay was inspired by muse dash.
+I think it kinda came down to the wire getting all the beats mapped, Richard did a good job making and mapping those bad boys.
+The end result is pretty cool with some weird jams and visuals.
+Definitely difficult for newcomers, but experienced rhythm gamers will find it a decent challenge.
+
+Demo video:
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ByMMrFNJBAw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+
+
+The game can be found here: <a href="https://boltsoft.itch.io/dice-beat">https://boltsoft.itch.io/dice-beat</a></pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Game, GameJam, Unity</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">VR Painting</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2281170/header.jpg"></div>
+                <p class="description" data-bind="html:description">A simple VR painting game</p>
+                <pre class="post-content" data-bind="html:msg">
+This was originally a minigame concept for a larger project I made in a week.
+After the larger project died I figured I'd try to package this up as a simple thing just for fun. But turns out VR development sucks and it wasn't very fun. 
+Still, it's kind of neat with physically simulated brush pressures and angles blending and paint dripping and stencils etc.<a href="https://store.steampowered.com/app/2281170/VArt_VR_Painting_Studio/">
+It's on steam here.</a> It didn't review very well despite being free because of the jank I guess.
+
+I was able to make some not half bad stuff following Bob Ross even though I've never painted before.
+<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2281170/ss_4bb30c64a5a91978306ccc3e2d82b1c8d2ccb4b2.1920x1080.jpg">
+
+<img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2281170/ss_9f2f72378de9c803b6630090aa0151b09e9ce427.1920x1080.jpg"></pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Unity, Game</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">Cloud Shader</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://imgur.com/hU6qX2w.jpg"></div>
+                <p class="description" data-bind="html:description">Simple Pseudo-Volumetric Cloud Shader, With Shadows</p>
+                <pre class="post-content" data-bind="html:msg"><div class="vsc-controller"></div><div class="vsc-controller"></div>I whipped this up quickly to test an idea I had.
+They're rendered just using some low poly spheres to approximate the volume.
+They could look better if I had used better test textures, these are maybe a bit crunchy or wispy, Idunno.
+<video controls="" autoplay="" loop="" src="https://i.imgur.com/hU6qX2w.mp4" crossorigin="anonymous"></video>
+
+
+Then they are rendered orthographically into a shadow buffer and projected onto geometry below and treated as shadows.
+I think with some combination of lowres and blur to soften them.
+<video controls="" autoplay="" loop="" src="https://i.imgur.com/IOLnmcc.mp4" crossorigin="anonymous"></video>
+
+Since they're constructed out of multiple spheres, they can cast shadows onto each other as well, which can make for a nice effect.
+Scrolling texture layers gives a pretty good flowy effect but it'd be difficult to simulate the way clouds morph over time, though maybe simply scaling/fading them in and out could provide a good enough effect.
+Overall though, I think this technique doesn't scale well since you need a ton of them to make a sky feel full and cool, nor would this be able to replicate more complex cloud shapes as easily.
+I'm not sure of the performance of this though if you had a ton of them but probably not too bad, the shader is simple so as long as they're properly instanced it might be worth it. Perhaps a procedural spawning system and such could create a nice enough simple sky.</pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Shaders, Unity</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    
+                        <div class="blog-post" data-bind="
+                            visible:$data.Filter(),
+                            template:{name:'blogpost-template'},
+                            class:displayType() == 'feed-blog' ? 'main-post' : ''
+                            ">
+
+            <div class="info" data-bind="event:{click:displayType() != 'feed-blog' ? Click : null}">
+                <div style="display: flex; align-items: baseline;">
+                    <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+                    <h4 class="post-title" data-bind="text:title">Calculator Pocket Monsters</h4>
+                </div>
+                <div class="img" data-bind="html:imgurl"><img src="https://i.imgur.com/piSCnox.jpg"></div>
+                <p class="description" data-bind="html:description">TI-84 BASIC monster collecting game</p>
+                <pre class="post-content" data-bind="html:msg">
+One of my oldest real projects I guess.
+In highschool I was working on this game somehow with the idea it could be shared among students and played with multiplayer battles via link cable and such. 
+It was neat but I graduated before I could accomplish this dream.
+
+Still I have no clue how I did this with code that looked like this:
+<img src="https://i.imgur.com/5PeBs9F.jpeg"></pre>
+            </div>
+            
+            <div class="likes-container" data-bind="css:{active:likeClicked}">
+                <span data-bind="text:likes">1</span>
+                <button data-bind="click:LikePost"></button>
+                <span data-bind="text:tags.join(', ')">Game</span>
+            </div>
+
+            <button class="back-btn" data-bind="event:{click:ClosePost}, if:mainPost()==$data"></button>
+
+        </div>
+                    </div>
+
+                </div>
+            </center>
+        </div>
+
+        <div><footer>
+        <div>
+                <div>
+
+                </div>
+
+                <div>
+                        <span>This is a footer</span>
+                        <span>Contact: <a href="mailto: BoltSoft@gmail.com" target="_blank">BoltSoft@gmail.com</a></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                </div>
+
+                <div>
+
+                </div>
+
+
+                <div></div>
+                <div></div>
+                <sub class="right">© 2026 Scott Taggart</sub>
+        </div>
+</footer></div>
+
+
+        <!-- scripto stuff -->
+        <script type="text/html" id="blogpost-template"></script>
+
+        <script src="js/Index.js?{{site.time | date: '%s%N'}}"></script>
+        <script src="js/utility/Main.js?{{site.time | date: '%s%N'}}"></script>
+    
